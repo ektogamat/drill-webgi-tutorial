@@ -1,8 +1,13 @@
 {
-  "name": "webgi-vanilla-typescript",
+  "name": "threejs-gsap-webgi-course",
   "version": "1.0.0",
   "description": "WebGi + TypeScript example starter project",
   "main": "index.html",
+  "author": {
+    "name" : "Anderson Mancini",
+    "email" : "andersonmancini30@gmail.com",
+    "url" : "https://twitter.com/Andersonmancini/"
+  },
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html --no-minify --public-url ./"
@@ -29,5 +34,8 @@
         "staticOutDir": "assets"
       }
     ]
+  },
+  "dependencies": {
+    "gsap": "^3.11.1"
   }
 }

@@ -2,18 +2,83 @@
 <html lang="en">
 
 <head>
-	<title>WebGi starter</title>
+	<title>Threejs Free Course Final Project - BY ANDERSON MANCINI</title>
+	<meta name="description" content="Threejs demo landing page for product visualization using WEBGi">
+
+	<meta property="og:url" content="http://drill-webgi-tutorial.vercel.app">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Threejs demo landing page for product visualization using WEBGi">
+	<meta property="og:description" content="Threejs demo landing page for product visualization using WEBGi">
+	<meta property="og:image" content="http://drill-webgi-tutorial.vercel.app/assets/images/preview.jpg">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content="drill-webgi-tutorial.vercel.app">
+	<meta property="twitter:url" content="http://drill-webgi-tutorial.vercel.app">
+	<meta name="twitter:title" content="Threejs demo landing page for product visualization using WEBGi">
+	<meta name="twitter:description"
+		content="Threejs demo landing page for product visualization using WEBGi">
+	<meta name="twitter:image" content="http://drill-webgi-tutorial.vercel.app/assets/images/preview.jpg">
+
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="author" content="www.neotix.com.br">
+
 	<meta charset="UTF-8" />
+
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+	<link rel="manifest" href="assets/favicons/site.webmanifest">
+	<meta name="msapplication-TileColor" content="#F2CE6E">
+	<meta name="theme-color" content="#F2CE6E">
+
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
+
+	<nav class="nav--bar">
+		<img class="logo" src="assets/images/logo.svg" >
+		<button class="button--navbar">BUY NOW</button>
+	</nav>
+
+	<section class="section first">
+		<div class="section--one--container">
+			<h1>Perfect Drill</h1>
+			<p>Variable speed for ultimate fingertip control for all drilling applications. Reverse brush system for full torque and power in forward and reverse, lock-on button for continuous use.</p>
+			<button class="button--hero">KNOW MORE</button>
+		</div>
+	</section>
+
+	<section class="section second">
+		<div class="section--two--container">
+			<h2>Comfortable to use</h2>
+			<p>Ergonomic reversible hammer drill design with optimal grip positions, light weight and insulated shock proof plastic body, easy to change bits</p>
+		</div>
+		<div class="custom--bg"></div>
+	</section>
+
+	<section class="section third">
+		<div class="section--third--container">
+			<h2>Wood and metal</h2>
+			<p>Supports wood and metal drilling. Metal drill bits are not part of the included components with the product. Metal drill bits can be procured by the customer and can be used for drilling into metal surfaces</p>
+		</div>
+	</section>
+
+	<footer>
+		<button class="button--footer">BACK TO TOP</button>
+	</footer>
+
 	<div id="webgi-canvas-container">
 		<canvas id="webgi-canvas"></canvas>
 	</div>
 
-	<script src="src/index.ts">
-	</script>
+	<script src="src/index.ts"></script>
+	
 </body>
 
 </html>
