@@ -1,4 +1,14 @@
-import { ViewerApp, AssetManagerPlugin, GBufferPlugin, ProgressivePlugin, TonemapPlugin, SSRPlugin, SSAOPlugin, BloomPlugin } from "webgi";
+import {
+    ViewerApp,
+    AssetManagerPlugin,
+    GBufferPlugin,
+    ProgressivePlugin,
+    TonemapPlugin,
+    SSRPlugin,
+    SSAOPlugin,
+    BloomPlugin,
+    Vector3, GammaCorrectionPlugin
+} from "webgi";
 import "./styles.css";
 
 import gsap from "gsap"
@@ -10,8 +20,7 @@ async function setupViewer(){
 
     const viewer = new ViewerApp({
         canvas: document.getElementById('webgi-canvas') as HTMLCanvasElement,
-        useRgbm: false,
-        isAntialiased: true
+        // isAntialiased: true,
     })
 
     const manager = await viewer.addPlugin(AssetManagerPlugin)
@@ -22,26 +31,34 @@ async function setupViewer(){
     // Add plugins individually.
     await viewer.addPlugin(GBufferPlugin)
     await viewer.addPlugin(new ProgressivePlugin(32))
-    await viewer.addPlugin(new TonemapPlugin(!viewer.useRgbm))
+    await viewer.addPlugin(new TonemapPlugin(true))
+    await viewer.addPlugin(GammaCorrectionPlugin)
     await viewer.addPlugin(SSRPlugin)
     await viewer.addPlugin(SSAOPlugin)
     await viewer.addPlugin(BloomPlugin)
+
+    viewer.getPlugin(TonemapPlugin)!.config!.clipBackground = true
 
     viewer.renderer.refreshPipeline()
 
     await manager.addFromPath("./assets/drill3.glb")
 
+    viewer.getPlugin(TonemapPlugin)!.config!.clipBackground = true // in case its set to false in the glb
+
+    viewer.scene.activeCamera.setCameraOptions({controlsEnabled: false})
+
+    onUpdate()
 
     function setupScrollanimation(){
 
         const tl = gsap.timeline()
-    
+
         // FIRST SECTION
-    
+
         tl
         .to(position, {x: 1.56, y: -2.26, z: -3.85,
             scrollTrigger: {
-                trigger: ".second", 
+                trigger: ".second",
                 start:"top bottom",
                 end: "top top", scrub: true,
                 immediateRender: false
@@ -49,24 +66,24 @@ async function setupViewer(){
 
         .to(".section--one--container", { xPercent:'-150' , opacity:0,
             scrollTrigger: {
-                trigger: ".second", 
+                trigger: ".second",
                 start:"top bottom",
                 end: "top 80%", scrub: 1,
                 immediateRender: false
         }})
         .to(target, {x: -1.37, y: 1.99 , z: -0.37,
             scrollTrigger: {
-                trigger: ".second", 
+                trigger: ".second",
                 start:"top bottom",
                 end: "top top", scrub: true,
                 immediateRender: false
         }})
 
         // LAST SECTION
-        
+
         .to(position, {x: -3.4, y: 9.6, z: 1.71,
             scrollTrigger: {
-                trigger: ".third", 
+                trigger: ".third",
                 start:"top bottom",
                 end: "top top", scrub: true,
                 immediateRender: false
@@ -74,12 +91,12 @@ async function setupViewer(){
 
         .to(target, {x: -1.5, y: 2.13 , z: -0.4,
             scrollTrigger: {
-                trigger: ".third", 
+                trigger: ".third",
                 start:"top bottom",
                 end: "top top", scrub: true,
                 immediateRender: false
         }})
-        
+
     }
 
     setupScrollanimation()
@@ -88,15 +105,14 @@ async function setupViewer(){
     let needsUpdate = true;
 
     function onUpdate() {
-        needsUpdate = true
-        viewer.renderer.resetShadows()
+        needsUpdate = true;
+        // viewer.renderer.resetShadows()
         viewer.setDirty()
     }
 
     viewer.addEventListener('preFrame', () =>{
         if(needsUpdate){
-            camera.positionUpdated(true)
-            camera.targetUpdated(true)
+            camera.positionTargetUpdated(true)
             needsUpdate = false
         }
     })
