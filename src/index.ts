@@ -11,7 +11,7 @@ async function setupViewer(){
     const viewer = new ViewerApp({
         canvas: document.getElementById('webgi-canvas') as HTMLCanvasElement,
         useRgbm: false,
-        isAntialiased: true
+        isAntialiased: true,
     })
 
     const manager = await viewer.addPlugin(AssetManagerPlugin)
