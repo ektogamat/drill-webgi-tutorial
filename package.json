@@ -4,9 +4,9 @@
   "description": "WebGi + TypeScript example starter project",
   "main": "index.html",
   "author": {
-    "name" : "Anderson Mancini",
-    "email" : "andersonmancini30@gmail.com",
-    "url" : "https://twitter.com/Andersonmancini/"
+    "name": "Anderson Mancini",
+    "email": "andersonmancini30@gmail.com",
+    "url": "https://twitter.com/Andersonmancini/"
   },
   "scripts": {
     "start": "parcel index.html",
