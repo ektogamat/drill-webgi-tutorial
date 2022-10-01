@@ -52,6 +52,20 @@ body {
   cursor: pointer;
   transition: all 0.8s ease;
 }
+
+.button--customize{
+  background: #F2CE6E;
+  color: black;
+  border: none;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 15px 30px;
+  margin-top: 24px;
+  margin-right: 40px;
+  font-size: 0.6rem;
+  cursor: pointer;
+  transition: all 0.8s ease;
+}
 .button--hero:hover{
   background: black;
   color: white;
@@ -138,4 +152,14 @@ footer{
   height: 100vh;
   pointer-events: none;
   position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button--exit{
+  width: 90px;
+  margin-bottom: 5%;
+  z-index: 5;
 }
