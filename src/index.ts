@@ -7,7 +7,7 @@ import {
     SSRPlugin,
     SSAOPlugin,
     BloomPlugin,
-    Vector3, GammaCorrectionPlugin
+    Vector3, GammaCorrectionPlugin, MeshBasicMaterial2, Color
 } from "webgi";
 import "./styles.css";
 
@@ -27,6 +27,8 @@ async function setupViewer(){
     const camera = viewer.scene.activeCamera
     const position = camera.position
     const target = camera.target
+    const exitButton = document.querySelector('.button--exit') as HTMLElement
+    const customizerInterface = document.querySelector('.customizer--container') as HTMLElement
 
     // Add plugins individually.
     await viewer.addPlugin(GBufferPlugin)
@@ -40,6 +42,8 @@ async function setupViewer(){
     viewer.renderer.refreshPipeline()
 
     await manager.addFromPath("./assets/drill3.glb")
+
+    const drillMaterial = manager.materials!.findMaterialsByName('Drill_01')[0] as MeshBasicMaterial2
 
     viewer.getPlugin(TonemapPlugin)!.config!.clipBackground = true // in case its set to false in the glb
 
@@ -132,7 +136,7 @@ async function setupViewer(){
     const sections = document.querySelector('.container') as HTMLElement
     const mainContainer = document.getElementById('webgi-canvas-container') as HTMLElement
 	document.querySelector('.button--customize')?.addEventListener('click', () => {
-        sections.style.display = "none"
+        sections.style.visibility = "hidden"
         mainContainer.style.pointerEvents = "all"
         document.body.style.cursor = "grab"
 
@@ -141,16 +145,41 @@ async function setupViewer(){
 	})
 
     function enableControlers(){
+        exitButton.style.visibility = "visible"
+        customizerInterface.style.visibility = "visible"
         viewer.scene.activeCamera.setCameraOptions({controlsEnabled: true})
     }
 
+
     // EXIT CUSTOMIZER
-	document.querySelector('.button--exit')?.addEventListener('click', () => {
+	exitButton.addEventListener('click', () => {
+        gsap.to(position, {x: -3.4, y: 9.6, z: 1.71, duration: 1, ease: "power3.inOut", onUpdate})
+        gsap.to(target, {x: -1.5, y: 2.13 , z: -0.4, duration: 1, ease: "power3.inOut", onUpdate})
+
         viewer.scene.activeCamera.setCameraOptions({controlsEnabled: false})
-        sections.style.display = "block"
+        sections.style.visibility = "visible"
         mainContainer.style.pointerEvents = "none"
         document.body.style.cursor = "default"
+        exitButton.style.visibility = "hidden"
+        customizerInterface.style.visibility = "hidden"
 	})
+
+    document.querySelector('.button--colors.black')?.addEventListener('click', () => {
+		changeColor(new Color(0x383830).convertSRGBToLinear())
+    })
+
+    document.querySelector('.button--colors.red')?.addEventListener('click', () => {
+		changeColor(new Color(0xfe2d2d).convertSRGBToLinear())
+    })
+
+    document.querySelector('.button--colors.yellow')?.addEventListener('click', () => {
+		changeColor(new Color(0xffffff).convertSRGBToLinear())
+    })
+
+    function changeColor(_colorToBeChanged: Color){
+        drillMaterial.color = _colorToBeChanged;
+        viewer.scene.setDirty()
+    }
 
 }
 

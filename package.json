@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --no-minify --public-url ./"
+    "build": "parcel build index.html --no-minify --public-url ./",
+    "deploy": "vercel --prod"
   },
   "devDependencies": {
     "@types/three": "^0.139.0",
@@ -36,6 +37,7 @@
     ]
   },
   "dependencies": {
-    "gsap": "^3.11.1"
+    "gsap": "^3.11.1",
+    "vercel": "^28.4.5"
   }
 }

@@ -162,4 +162,46 @@ footer{
   width: 90px;
   margin-bottom: 5%;
   z-index: 5;
+  position: fixed;
+  bottom: 0;
+  visibility: hidden;
 }
+
+.customizer--container{
+  position: fixed;
+  top: 50%;
+  visibility: hidden;
+}
+
+.strap--colors{
+  list-style: none;
+}
+
+.button--colors{
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1px solid white;
+  padding: 0;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.8s ease;
+}
+
+.button--colors:hover{
+  filter: drop-shadow(0 0 0.75rem rgba(28, 17, 52, 0.704));
+  transform: scale(1.5);
+}
+
+.yellow{
+  background-color: #F0D56C;
+}
+
+.red{
+  background-color: rgb(231, 34, 34);
+}
+
+.black{
+  background-color: rgb(74, 76, 79);
+}
+
