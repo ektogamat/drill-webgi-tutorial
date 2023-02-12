@@ -8,6 +8,7 @@ import {
     SSAOPlugin,
     mobileAndTabletCheck,
     BloomPlugin,
+    DiamondPlugin,
     Vector3, GammaCorrectionPlugin, MeshBasicMaterial2, Color, AssetImporter
 } from "webgi";
 import "./styles.css";
@@ -43,7 +44,7 @@ async function setupViewer(){
 
     const viewer = new ViewerApp({
         canvas: document.getElementById('webgi-canvas') as HTMLCanvasElement,
-        // isAntialiased: true,
+        isAntialiased: true,
     })
 
     const isMobile = mobileAndTabletCheck()
@@ -64,6 +65,7 @@ async function setupViewer(){
     await viewer.addPlugin(SSRPlugin)
     await viewer.addPlugin(SSAOPlugin)
     await viewer.addPlugin(BloomPlugin)
+    await viewer.addPlugin(DiamondPlugin)
 
     // Loader
     const importer = manager.importer as AssetImporter
@@ -84,9 +86,9 @@ async function setupViewer(){
 
     viewer.renderer.refreshPipeline()
 
-    await manager.addFromPath("./assets/drill3.glb")
+    await manager.addFromPath("./assets/ring_final.glb")
 
-    const drillMaterial = manager.materials!.findMaterialsByName('Drill_01')[0] as MeshBasicMaterial2
+    const drillMaterial = manager.materials!.findMaterialsByName('diamond')[0] as MeshBasicMaterial2
 
     viewer.getPlugin(TonemapPlugin)!.config!.clipBackground = true // in case its set to false in the glb
 
@@ -96,6 +98,8 @@ async function setupViewer(){
         position.set(-3.5, -1.1, 5.5)
         target.set(-0.8, 1.55, -0.7)
         camera.setCameraOptions({ fov: 40 })
+    } else{
+        target.set(-1.4, 2, 1)
     }
 
     onUpdate()
@@ -219,7 +223,7 @@ async function setupViewer(){
 	})
 
     document.querySelector('.button--colors.black')?.addEventListener('click', () => {
-		changeColor(new Color(0x383830).convertSRGBToLinear())
+		changeColor(new Color(0x0022bc).convertSRGBToLinear())
     })
 
     document.querySelector('.button--colors.red')?.addEventListener('click', () => {
@@ -227,7 +231,7 @@ async function setupViewer(){
     })
 
     document.querySelector('.button--colors.yellow')?.addEventListener('click', () => {
-		changeColor(new Color(0xffffff).convertSRGBToLinear())
+		changeColor(new Color(0xF0D56C).convertSRGBToLinear())
     })
 
     function changeColor(_colorToBeChanged: Color){

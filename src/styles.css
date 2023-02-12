@@ -4,6 +4,34 @@ body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
+  overflow-y: hidden;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.loader{
+  background: black;
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.progress{
+  position: absolute;
+  top: 52%;
+  height: 1px;
+  width: 100%;
+  transform: scaleX(0);
+  background-color: white;
+  transition: all 1s ease;
 }
 
 .nav--bar{
@@ -164,13 +192,14 @@ footer{
   z-index: 5;
   position: fixed;
   bottom: 0;
-  visibility: hidden;
+  display: none;
 }
 
 .customizer--container{
   position: fixed;
   top: 50%;
-  visibility: hidden;
+  display: none;
+  transform: translateY(-50%);
 }
 
 .strap--colors{
@@ -205,3 +234,47 @@ footer{
   background-color: rgb(74, 76, 79);
 }
 
+/* MOBILE ADJUSTMENTS */
+
+@media (max-width: 600px) {
+
+
+  html, body, .container, nav{
+    overflow-x: hidden;
+  }
+
+  .first h1{
+    font-size: 4rem;
+    line-height: 4rem;
+    letter-spacing: -0.1rem;
+    width: 50%;
+    margin: 0 0 15px 0px;
+  }
+
+  .nav--bar{
+    margin-top: 0;
+    z-index: 1;
+    background: #ffffffad;
+    padding: 30px 0;
+    backdrop-filter: blur(5px);
+  }
+  
+  .section--one--container {
+    width: 360px;
+    margin-left: 6%;
+    margin-top: 40%;
+  }
+
+  .section--one--container > p {
+    width: 70%;
+  }
+
+  .second{
+    align-items: flex-end;
+  }
+  
+  .section--third--container {
+    width: 220px;
+    margin-left: 7%;
+  }
+}
